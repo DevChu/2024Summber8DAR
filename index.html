@@ -5,31 +5,7 @@
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
         <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
         <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
-        <script>
-            alert('outer script');
-            AFRAME.registerComponent('registerevents', {
-                init: function () {
-                    var marker = this.el;
-                    alert('registerevents');
-                    // Make the element emit events when found and when lost.
-                    marker.setAttribute('emitevents', 'true');
-
-                    marker.addEventListener('markerFound', function() {
-                        var markerId = marker.id;
-                        alert('markerFound', markerId);
-                        // TODO: Add your own code here to react to the marker being found.
-                    });
-
-                    marker.addEventListener('markerLost', function() {
-                        var markerId = marker.id;
-                        alert('markerLost', markerId);
-                        // TODO: Add your own code here to react to the marker being lost.
-                    });
-                }
-            });
-        </script>
     </head>
-
     <body style="margin: 0; overflow: hidden;">
         <a-scene
             vr-mode-ui="enabled: false;"
@@ -102,8 +78,17 @@
             var videoBlock = document.getElementById('danceVideo');
             videoBlock.addEventListener('loaded', function (event) {
               alert('danceVideo loaded!');
-              var video = videoBlock.querySelector('video');
+              // var video = videoBlock.querySelector('video');
               // alert('video >>> loaded!' + video);
+              var videoMarkerEl = document.getElementById('markerB');
+                videoMarkerEl.addEventListener('markerFound', function (event) {
+                    alert.log('markerFound!');
+                    alert.log(event);
+                });
+                videoMarkerEl.addEventListener('markerLost', function (event) {
+                    alert.log('markerLost!');
+                    alert.log(event);
+                });
             });            
             videoBlock.addEventListener('stateadded', function (event) {
                 alert.log('stateadded videoBlock!');
@@ -112,17 +97,6 @@
                 // this.setAttribute('material', 'color', 'green');
               }
             });
-            var animatedEl = document.getElementById('animated-marker');
-            animatedEl.addEventListener('markerFound', function (event) {
-                alert.log('markerFound!');
-                alert.log(event);
-            });
-            animatedEl.addEventListener('markerLost', function (event) {
-                alert.log('markerLost!');
-                alert.log(event);
-            });
-
-            // markerFound
         </script>
     </body>
 </html>
