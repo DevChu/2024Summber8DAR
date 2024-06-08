@@ -51,6 +51,7 @@
                     rotation="-90 0 0"
                     class="clickable"
                     gesture-handler
+                    id="danceVideo"
                 ></a-video>
             </a-marker>
             <a-marker
@@ -74,5 +75,20 @@
 
             <a-entity camera></a-entity>
         </a-scene>
+        <script>
+            var videoBlock = document.getElementById('danceVideo');
+            videoBlock.addEventListener('loaded', function (event) {
+              alert('danceVideo loaded!');
+              var video = videoBlock.querySelector('video');
+              alert('video >>> loaded!' + video);
+            });
+            videoBlock.addEventListener('stateadded', function (event) {
+                alert.log('stateadded videoBlock!');
+              if (event.detail.state === 'active') {
+                alert.log('State "active" added to videoBlock!');
+                // this.setAttribute('material', 'color', 'green');
+              }
+            });
+        </script>
     </body>
 </html>
