@@ -42,6 +42,7 @@
                 emitevents="true"
                 cursor="fuse: false; rayOrigin: mouse;"
                 id="markerB"
+                registerevents
             >
                 <a-video
                     src="#vid"
@@ -81,6 +82,7 @@
               // var video = videoBlock.querySelector('video');
               // alert('video >>> loaded!' + video);
               var videoMarkerEl = document.getElementById('markerB');
+              alert('markerB' + markerB);
                 videoMarkerEl.addEventListener('markerFound', function (event) {
                     alert.log('markerFound!');
                     alert.log(event);
@@ -97,6 +99,17 @@
                 // this.setAttribute('material', 'color', 'green');
               }
             });
+            verifyMarker() {
+                //var amarker = this.$refs.amarker; // vuejs
+                var amarker = document.querySelector("#markerB")
+                if(amarker.object3D.visible == true) {
+                    alert('markerB is visible');
+                }
+                else {
+                    alert('markerB is lost');
+                }
+            }
+            setInterval(this.verifyMarker, 1000); // 1000 means 1 second
         </script>
     </body>
 </html>
