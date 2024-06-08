@@ -81,7 +81,7 @@
               alert('danceVideo loaded!');
               var video = videoBlock.querySelector('video');
               alert('video >>> loaded!' + video);
-            });
+            });            
             videoBlock.addEventListener('stateadded', function (event) {
                 alert.log('stateadded videoBlock!');
               if (event.detail.state === 'active') {
@@ -89,6 +89,17 @@
                 // this.setAttribute('material', 'color', 'green');
               }
             });
+            var animatedEl = document.getElementById('animated-marker');
+            animatedEl.addEventListener('markerFound', function (event) {
+                alert.log('markerFound!');
+                alert.log(event);
+            });
+            animatedEl.addEventListener('markerLost', function (event) {
+                alert.log('markerLost!');
+                alert.log(event);
+            });
+
+            // markerFound
         </script>
     </body>
 </html>
