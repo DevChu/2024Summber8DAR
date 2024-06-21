@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>GeoAR.js demo</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  </head>
+
+  <body>
+    <a-scene
+      vr-mode-ui="enabled: false"
+      arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
+    >
+    <!-- (25.007203,121.463469) -->
+      <a-text
+        value="30303030"
+        look-at="[gps-camera]"
+        position="0 30 0"
+        scale="120 120 120"
+        gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
+      ></a-text>
+      <a-text
+        value="31313131"
+        look-at="[gps-camera]"
+        position="0 31 0"
+        scale="120 120 120"
+        gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
+      ></a-text>
+      <a-text
+        value="32323232"
+        look-at="[gps-camera]"
+        position="0 32 0"
+        scale="120 120 120"
+        gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
+      ></a-text>
+      <a-text
+        value="33333333"
+        look-at="[gps-camera]"
+        position="0 33 0"
+        scale="120 120 120"
+        gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
+      ></a-text>
+      <a-text
+        value="34343434"
+        look-at="[gps-camera]"
+        position="0 34 0"
+        scale="120 120 120"
+        gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
+      ></a-text>
+      <a-text
+        value="35353535"
+        look-at="[gps-camera]"
+        position="0 35 0"
+        scale="120 120 120"
+        gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
+      ></a-text>
+      <a-text
+        value="36363636"
+        look-at="[gps-camera]"
+        position="0 36 0"
+        scale="120 120 120"
+        gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
+      ></a-text>
+      <a-text
+        value="37373737"
+        look-at="[gps-camera]"
+        position="0 37 0"
+        scale="120 120 120"
+        gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
+      ></a-text>
+      <a-text
+        value="38383838"
+        look-at="[gps-camera]"
+        position="0 38 0"
+        scale="120 120 120"
+        gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
+      ></a-text>
+      <a-camera gps-camera rotation-reader> </a-camera>
+    </a-scene>
+  </body>
+</html>
