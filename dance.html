@@ -72,7 +72,20 @@
                     gesture-handler
                 ></a-video>
             </a-marker>
-
+            <a-video
+                    src="#vid"
+                    position='0 0.1 0'
+                    rotation="-90 0 0"
+                    look-at="[gps-camera]"
+                    videohandler
+                    smooth="true"
+                    smoothCount="10"
+                    smoothTolerance="0.01"
+                    smoothThreshold="5"
+                    autoplay="false"
+                    scale="1 1 1"
+                    gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
+                ></a-video>
             <a-entity camera></a-entity>
         </a-scene>
     </body>
