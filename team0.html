@@ -115,7 +115,7 @@
         <div class="popup-content">
             <button id="close-button" class="close-button" onclick="closePopup()">×</button>
             <p id="popupMessage"></p>
-            <iframe id="ar" src="https://devchu.github.io/2024Summber8DAR/in8DAR.html" style="display: none;"></iframe>
+            <iframe id="ar" src="" style="display: none;"></iframe>
         </div>
     </div>
 
@@ -151,7 +151,11 @@
         function openCamera() {
             document.getElementById('popup').style.display = 'flex';
             document.getElementById('close-button').style.display = 'block';
-            document.getElementById('ar').style.display = 'block';
+            const arURL = `https://devchu.github.io/2024Summber8DAR/8dAR-intro.html${location.search}`,
+                arIframe = document.getElementById('ar');
+            arIframe.src = arURL;
+            arIframe.style.display = 'block';
+
         }
 
         function openPopup() {
