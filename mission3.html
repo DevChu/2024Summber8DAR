@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mission 1</title>
+    <title>Mission 3</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="main.css">
     <script src="./js/team.js"></script>
@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div id="welcome-msg">
-            <div>歡迎來到 第一關</div>
+            <div>歡迎來到 第三關</div>
             <div>請在 12 樓找尋此圖片</div>
             <div>使用AR取得規則</div>
         </div>
@@ -21,7 +21,7 @@
             </button>
         </div>
         <div>
-            <img id="location-pic" src="assets/m1-location.png"></img>   
+            <img id="location-pic" src="assets/m3-location.jpg"></img>   
         </div>
         <div id="input" class="input-group">
             <input type="text" id="secretInput" placeholder="輸入通關密語...">            
@@ -44,7 +44,7 @@
             const secret = document.getElementById('secretInput').value.toLowerCase();
             const messageElement = document.getElementById('message');
             const popupMessageElement = document.getElementById('popupMessage');
-            if (secret === 'rolling') {
+            if (secret === 'hohoho') {
                 document.getElementById('close-button').style.display = 'none';
                 messageElement.textContent = '';
                 let countdown = 5;
@@ -56,7 +56,7 @@
                     popupMessageElement.textContent = `輸入正確，正在創意之路上往前邁進... ${countdown}`;
                     if (countdown === 0) {
                         clearInterval(countdownInterval);
-                        window.location.href = `https://devchu.github.io/2024Summber8DAR/mission2.html`;
+                        window.location.href = `https://devchu.github.io/2024Summber8DAR/mission4.html`;
                     }
                 }, 1000);
             } else {
@@ -68,7 +68,7 @@
             document.getElementById('popup').style.display = 'flex';
             document.getElementById('close-button').style.display = 'block';
             const arIframe = document.getElementById('ar');
-            arIframe.src = 'https://devchu.github.io/2024Summber8DAR/8dAR-mission1.html';
+            arIframe.src = 'https://devchu.github.io/2024Summber8DAR/8dAR-mission3.html';
             arIframe.style.display = 'block';
         }
 
