@@ -10,3 +10,6 @@ function getTeamCode() {
     }
     return '???';
 }
+function getTeamNumber() {
+    return parseTeamCode() + 1;
+}

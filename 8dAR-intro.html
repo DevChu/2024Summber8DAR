@@ -15,19 +15,36 @@
       arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
     >
     <!-- (25.007203,121.463469) -->
-    <!-- value="歡迎來到夢想之路！(335xea)" -->
-      <a-text id="welcome-text"
+      <a-image id="welcome-pic"
+          look-at="[gps-camera]"
+          scale="1 1 1"
+          gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
+      ></a-image>
+      <a-text id="error-text"
+        value="??ERROR??"
         look-at="[gps-camera]"
         position="0 0 0"
         scale="120 120 120"
+        color="red"
+        rotation="-90 0 0"
         gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
-        font="https://cdn.aframe.io/fonts/mozillavr.fnt"
       ></a-text>
       <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
     <script>
       window.onload = function () {
-        document.getElementById('welcome-text').setAttribute('value', `Welcome to 夢想之路！\n<${getTeamCode()}>`);
+        const teamNumber = getTeamNumber(),
+          picAR = document.getElementById('welcome-pic'),
+          errorTextAR = document.getElementById('error-text');
+        console.log(`intro --> team: ${teamNumber}`);
+        if (teamNumber == 0) {
+          picAR.setAttribute('visible', false);
+          errorTextAR.setAttribute('visible', true);
+        } else {
+          picAR.setAttribute('visible', true);
+          errorTextAR.setAttribute('visible', false);
+          document.getElementById('welcome-pic').setAttribute('src', `assets/intro-${teamNumber}.jpg`);
+        }
       }
     </script>
   </body>
