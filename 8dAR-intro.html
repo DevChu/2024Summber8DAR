@@ -21,12 +21,13 @@
         position="0 0 0"
         scale="120 120 120"
         gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
+        font="https://cdn.aframe.io/fonts/mozillavr.fnt"
       ></a-text>
       <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
     <script>
       window.onload = function () {
-        document.getElementById('welcome-text').setAttribute('value', `歡迎來到夢想之路！<${getTeamCode()}>`);
+        document.getElementById('welcome-text').setAttribute('value', `Welcome to 夢想之路！\n<${getTeamCode()}>`);
       }
     </script>
   </body>
