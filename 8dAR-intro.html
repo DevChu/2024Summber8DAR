@@ -17,7 +17,7 @@
     <!-- (25.007203,121.463469) -->
       <a-image id="welcome-pic"
           look-at="[gps-camera]"
-          scale="1 1 1"
+          scale="50 50 50"
           gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
       ></a-image>
       <a-text id="error-text"
@@ -38,11 +38,11 @@
           errorTextAR = document.getElementById('error-text');
         console.log(`intro --> team: ${teamNumber}`);
         if (teamNumber == 0) {
-          picAR.setAttribute('visible', false);
-          errorTextAR.setAttribute('visible', true);
+          picAR.object3D.visible = false;
+          errorTextAR.object3D.visible = true;
         } else {
-          picAR.setAttribute('visible', true);
-          errorTextAR.setAttribute('visible', false);
+          picAR.object3D.visible = true;
+          errorTextAR.object3D.visible = false;
           document.getElementById('welcome-pic').setAttribute('src', `assets/intro-${teamNumber}.jpg`);
         }
       }
