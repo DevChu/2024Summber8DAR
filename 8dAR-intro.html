@@ -21,7 +21,6 @@
           gps-entity-place="latitude: 25.007203; longitude: 121.463469;"
       ></a-image>
       <a-text id="error-text"
-        value="??ERROR??"
         look-at="[gps-camera]"
         position="0 0 0"
         scale="120 120 120"
@@ -37,8 +36,9 @@
           picAR = document.getElementById('welcome-pic'),
           errorTextAR = document.getElementById('error-text');
         console.log(`intro --> team: ${teamNumber}`);
-        if (teamNumber > 0) {
-          errorTextAR.value = '';
+        if (teamNumber == 0) {
+          errorTextAR.setAttribute('value', '??ERROR??');
+        } else {
           document.getElementById('welcome-pic').setAttribute('src', `assets/intro-${teamNumber}.jpg`);
         }
       }
