@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>創意之路-起點</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        .camera-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 20px;
+        }
+        .popup-content iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+        .close-button {
+            position: absolute;
+            top: 4px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: black;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+    <script src="./js/team.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="welcome-msg">請輸入密語</div>
+        <button class="camera-button" onclick="openCamera()">
+                <i class="fas fa-camera"></i>
+            </button>
+        <div id="input" class="input-group">
+            <input type="text" id="secretInput" placeholder="輸入密語...">
+            <button onclick="confirmSecret()">確認</button>
+        </div>
+        <div class="message" id="message"></div>
+    </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <button id="close-button" class="close-button" onclick="closePopup()">×</button>
+            <p id="popupMessage"></p>
+            <iframe id="ar" src="" style="display: none;"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function confirmSecret() {
+            const teamCodeIndex = checkInvalidAccess();
+            if (teamCodeIndex == -1) {
+                return;
+            }
+            const secret = document.getElementById('secretInput').value;
+            const messageElement = document.getElementById('message');
+            const popupMessageElement = document.getElementById('popupMessage');
+            const teamNumber = getTeamNumber();
+            if (secret === teamCode[teamCodeIndex]) {
+                document.getElementById('close-button').style.display = 'none';
+                messageElement.textContent = '';
+                let countdown = 3;
+                popupMessageElement.textContent = `輸入正確，正在啟動創意之路... ${countdown}`;
+                openPopup();
+
+                const countdownInterval = setInterval(() => {
+                    countdown--;
+                    popupMessageElement.textContent = `輸入正確，正在啟動創意之路... ${countdown}`;
+                    if (countdown === 0) {
+                        clearInterval(countdownInterval);
+                        window.location.href = `https://devchu.github.io/2024Summber8DAR/mission${teamNumber}.html`;
+                    }
+                }, 1000);
+            } else {
+                messageElement.textContent = '密語錯誤，請重新輸入';
+                messageElement.style.color = 'red';
+            }
+        }
+        function openCamera() {
+            document.getElementById('popup').style.display = 'flex';
+            document.getElementById('close-button').style.display = 'block';
+            const arURL = `https://devchu.github.io/2024Summber8DAR/8dAR-intro.html${location.search}`,
+                arIframe = document.getElementById('ar');
+            arIframe.src = arURL;
+            arIframe.style.display = 'block';
+
+        }
+
+        function openPopup() {
+            document.getElementById('popup').style.display = 'flex';
+            document.getElementById('ar').style.display = 'none';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+        function checkInvalidAccess() {
+            const codeIndex = parseTeamCode();
+            if (codeIndex < 0) {
+                document.getElementById('welcome-msg').textContent = '咦~好像哪裡怪怪的...';
+                document.getElementById('input').style.display = 'none';
+                return -1;
+            }
+            return codeIndex;
+        }
+        window.onload = function () {
+            checkInvalidAccess();
+        }
+    </script>
+</body>
+</html>

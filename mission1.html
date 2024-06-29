@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile-like Page</title>
+    <title>Round 1</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
@@ -23,6 +23,9 @@
             width: 90%;
             max-width: 400px;
             text-align: center;
+        }
+        #location-pic {
+            max-width: 400px;
         }
         .input-group {
             display: flex;
@@ -100,13 +103,14 @@
 </head>
 <body>
     <div class="container">
-        <div id="welcome-msg">請輸入密語</div>
+        <div id="welcome-msg">歡迎來到 第一關，請在 12 樓找尋此圖片，使用AR取得規則</div>
+        <button class="camera-button" onclick="openCamera()">
+            <i class="fas fa-camera"></i>
+        </button>
+        <img id="location-pic" src="assets/m1-location.jpg"></img>
         <div id="input" class="input-group">
-            <input type="text" id="secretInput" placeholder="輸入密語...">
+            <input type="text" id="secretInput" placeholder="輸入通關密語...">
             <button onclick="confirmSecret()">確認</button>
-            <button class="camera-button" onclick="openCamera()">
-                <i class="fas fa-camera"></i>
-            </button>
         </div>
         <div class="message" id="message"></div>
     </div>
@@ -118,29 +122,29 @@
             <iframe id="ar" src="" style="display: none;"></iframe>
         </div>
     </div>
-
     <script>
         function confirmSecret() {
             const teamCodeIndex = checkInvalidAccess();
             if (teamCodeIndex == -1) {
                 return;
             }
+            const teamNumber = getTeamNumber();
             const secret = document.getElementById('secretInput').value;
             const messageElement = document.getElementById('message');
             const popupMessageElement = document.getElementById('popupMessage');
-            if (secret === teamCode[teamCodeIndex]) {
+            if (secret === 'rolling') {
                 document.getElementById('close-button').style.display = 'none';
                 messageElement.textContent = '';
                 let countdown = 3;
-                popupMessageElement.textContent = `輸入正確，正在啟動夢想之路，${countdown} 秒後前往 關卡`;
+                popupMessageElement.textContent = `輸入正確，正在創意之路上往前邁進... ${countdown}`;
                 openPopup();
 
                 const countdownInterval = setInterval(() => {
                     countdown--;
-                    popupMessageElement.textContent = `輸入正確，正在啟動夢想之路，${countdown} 秒後前往 關卡`;
+                    popupMessageElement.textContent = `輸入正確，正在創意之路上往前邁進...，${countdown}`;
                     if (countdown === 0) {
                         clearInterval(countdownInterval);
-                        window.location.href = 'https://www.google.com';
+                        window.location.href = `https://devchu.github.io/2024Summber8DAR/mission-2.html`;
                     }
                 }, 1000);
             } else {
@@ -151,7 +155,7 @@
         function openCamera() {
             document.getElementById('popup').style.display = 'flex';
             document.getElementById('close-button').style.display = 'block';
-            const arURL = `https://devchu.github.io/2024Summber8DAR/8dAR-intro.html${location.search}`,
+            const arURL = `https://devchu.github.io/2024Summber8DAR/8dAR-misson1.html`,
                 arIframe = document.getElementById('ar');
             arIframe.src = arURL;
             arIframe.style.display = 'block';
@@ -165,18 +169,6 @@
 
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
-        }
-        function checkInvalidAccess() {
-            const codeIndex = parseTeamCode();
-            if (codeIndex < 0) {
-                document.getElementById('welcome-msg').textContent = '咦~好像哪裡怪怪的...';
-                document.getElementById('input').style.display = 'none';
-                return -1;
-            }
-            return codeIndex;
-        }
-        window.onload = function () {
-            checkInvalidAccess();
         }
     </script>
 </body>
