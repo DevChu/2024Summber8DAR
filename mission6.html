@@ -39,47 +39,5 @@
             <iframe id="ar" src="" style="display: none;"></iframe>
         </div>
     </div>
-    <script>
-        function confirmSecret() {
-            const secret = document.getElementById('secretInput').value.toLowerCase();
-            const messageElement = document.getElementById('message');
-            const popupMessageElement = document.getElementById('popupMessage');
-            if (secret === 'stick-circle') {
-                document.getElementById('close-button').style.display = 'none';
-                messageElement.textContent = '';
-                let countdown = 5;
-                popupMessageElement.textContent = `輸入正確，正在創意之路上往前邁進... ${countdown}`;
-                openPopup();
-
-                const countdownInterval = setInterval(() => {
-                    countdown--;
-                    popupMessageElement.textContent = `輸入正確，正在創意之路上往前邁進... ${countdown}`;
-                    if (countdown === 0) {
-                        clearInterval(countdownInterval);
-                        window.location.href = `https://devchu.github.io/2024Summber8DAR/mission1.html`;
-                    }
-                }, 1000);
-            } else {
-                messageElement.textContent = '密語錯誤，請重新輸入';
-                messageElement.style.color = 'red';
-            }
-        }
-        function openCamera() {
-            document.getElementById('popup').style.display = 'flex';
-            document.getElementById('close-button').style.display = 'block';
-            const arIframe = document.getElementById('ar');
-            arIframe.src = 'https://devchu.github.io/2024Summber8DAR/8dAR-mission6.html';
-            arIframe.style.display = 'block';
-        }
-
-        function openPopup() {
-            document.getElementById('popup').style.display = 'flex';
-            document.getElementById('ar').style.display = 'none';
-        }
-
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
-    </script>
 </body>
 </html>
