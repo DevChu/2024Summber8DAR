@@ -96,11 +96,12 @@
             margin-top: 10px;
         }
     </style>
+    <script src="./js/team.js" />
 </head>
 <body>
     <div class="container">
-        <div>請輸入密語</div>
-        <div class="input-group">
+        <div id="welcome-msg">請輸入密語</div>
+        <div id="input" class="input-group">
             <input type="text" id="secretInput" placeholder="輸入密語...">
             <button onclick="confirmSecret()">確認</button>
             <button class="camera-button" onclick="openCamera()">
@@ -120,19 +121,23 @@
 
     <script>
         function confirmSecret() {
+            const teamCodeIndex = checkInvalidAccess();
+            if (teamCodeIndex == -1) {
+                return;
+            }
             const secret = document.getElementById('secretInput').value;
             const messageElement = document.getElementById('message');
             const popupMessageElement = document.getElementById('popupMessage');
-            if (secret === "335xea") {
+            if (secret === teamCode[teamCodeIndex]) {
                 document.getElementById('close-button').style.display = 'none';
                 messageElement.textContent = '';
                 let countdown = 3;
-                popupMessageElement.textContent = `輸入正確，正在啟動夢想之路，${countdown} 秒後前往 Google。`;
+                popupMessageElement.textContent = `輸入正確，正在啟動夢想之路，${countdown} 秒後前往 關卡`;
                 openPopup();
 
                 const countdownInterval = setInterval(() => {
                     countdown--;
-                    popupMessageElement.textContent = `輸入正確，正在啟動夢想之路，${countdown} 秒後前往 Google。`;
+                    popupMessageElement.textContent = `輸入正確，正在啟動夢想之路，${countdown} 秒後前往 關卡`;
                     if (countdown === 0) {
                         clearInterval(countdownInterval);
                         window.location.href = 'https://www.google.com';
@@ -156,6 +161,18 @@
 
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
+        }
+        function checkInvalidAccess() {
+            const codeIndex = parseTeamCode();
+            if (codeIndex < 0) {
+                document.getElementById('welcome-msg').textContent = '咦~好像哪裡怪怪的...';
+                document.getElementById('input').style.display = 'none';
+                return -1;
+            }
+            return codeIndex;
+        }
+        window.onload = function () {
+            checkInvalidAccess();
         }
     </script>
 </body>
