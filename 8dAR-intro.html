@@ -37,12 +37,8 @@
           picAR = document.getElementById('welcome-pic'),
           errorTextAR = document.getElementById('error-text');
         console.log(`intro --> team: ${teamNumber}`);
-        if (teamNumber == 0) {
-          picAR.object3D.visible = false;
-          errorTextAR.object3D.visible = true;
-        } else {
-          picAR.object3D.visible = true;
-          errorTextAR.object3D.visible = false;
+        if (teamNumber > 0) {
+          errorTextAR.value = '';
           document.getElementById('welcome-pic').setAttribute('src', `assets/intro-${teamNumber}.jpg`);
         }
       }
