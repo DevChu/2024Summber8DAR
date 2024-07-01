@@ -24,12 +24,14 @@
             <img id="location-pic" src="assets/m4-location.jpg"></img>   
         </div>
         <div>
-            <a href="https://devchu.github.io/2024Summber8DAR/assets/dance1.mp4">dance1</a>
-            <a href="https://devchu.github.io/2024Summber8DAR/assets/dance2.mp4">dance2</a>
-            <a href="https://devchu.github.io/2024Summber8DAR/assets/dance3.mp4">dance3</a>
-            <a href="https://devchu.github.io/2024Summber8DAR/assets/dance4.mp4">dance4</a>
-            <a href="https://devchu.github.io/2024Summber8DAR/assets/dance5.mp4">dance5</a>
-            <a href="https://devchu.github.io/2024Summber8DAR/assets/dance-back.mp4">music</a>
+            <a href="#" onclick="openDanceGif(1);">dance1</a>
+            <a href="#" onclick="openDanceGif(2);">dance2</a>
+            <a href="#" onclick="openDanceGif(3);">dance3</a>
+            <a href="#" onclick="openDanceGif(4);">dance4</a>
+            <a href="#" onclick="openDanceGif(5);">dance5</a>            
+        </div>
+        <div>
+            <audio controls src="https://devchu.github.io/2024Summber8DAR/assets/dance-back.mp3"></audio>
         </div>
         <div id="input" class="input-group">
             <input type="text" id="secretInput" placeholder="輸入通關密語...">            
@@ -43,7 +45,7 @@
     <div class="popup" id="popup">
         <div class="popup-content">
             <button id="close-button" class="close-button" onclick="closePopup()">×</button>
-            <p id="popupMessage"></p>
+            <div id="popupMessage"></div>
             <iframe id="ar" src="" style="display: none;"></iframe>
         </div>
     </div>

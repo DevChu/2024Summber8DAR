@@ -32,7 +32,7 @@ function confirmSecret() {
     if (secret0 === missionCode[missionNumber - 1]) {
         document.getElementById('close-button').style.display = 'none';
         const nextMissionNumber = missionNumber == 6 ? 1 : missionNumber + 1;
-        const nextURL = `https://devchu.github.io/2024Summber8DAR/mission${final ? '-f' : nextMissionNumber}.html`;
+        const nextURL = `./mission${final ? '-f' : nextMissionNumber}.html`;
         messageElement.textContent = '';
         let countdown = 5;
         popupMessageElement.textContent = `輸入正確，正在創意之路上往前邁進... ${countdown}`;
@@ -55,7 +55,7 @@ function openCamera() {
     document.getElementById('popup').style.display = 'flex';
     document.getElementById('close-button').style.display = 'block';
     const arIframe = document.getElementById('ar');
-    arIframe.src = `https://devchu.github.io/2024Summber8DAR/8dAR-mission${getMissionNumber()}.html`;
+    arIframe.src = `./8dAR-mission${getMissionNumber()}.html`;
     arIframe.style.display = 'block';
 }
 
@@ -66,4 +66,9 @@ function openPopup() {
 
 function closePopup() {
     document.getElementById('popup').style.display = 'none';
+}
+
+function openDanceGif(number) {
+    openPopup();    
+    popupMessage.innerHTML = `<video controls height="400"><source src="./assets/dance${number}.webm" type="video/webm" /></video>`;
 }
