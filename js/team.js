@@ -70,5 +70,5 @@ function closePopup() {
 
 function openDanceGif(number) {
     openPopup();    
-    popupMessage.innerHTML = `<video controls height="400"><source src="./assets/dance${number}.webm" type="video/webm" /></video>`;
+    popupMessage.innerHTML = `<video controls height="400" autoplay muted><source src="./assets/dance${number}.webm" type="video/webm" /></video>`;
 }
